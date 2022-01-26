@@ -1,22 +1,43 @@
+import react, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+import Rack from "./components/Rack";
+import Input from './components/Input';
+import FoundList from './components/FoundList';
+
 function App() {
+
+  const [state, setState] = useState({
+    rack: [],
+    input: "",
+    foundList: []
+  })
+
+  
+  useEffect(() => {
+    
+    //update input
+    
+  }, [state.input])
+  
+  
+  useEffect(() => {
+    
+    const onSubmit = () => {
+      return
+    }
+    //update input
+
+  }, [onSubmit])
+
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <Rack state={state} setState={setState} />
+      <Input state={state} setState={setState}/>
+      <FoundList state={state} setState={setState}/>
       </header>
     </div>
   );
