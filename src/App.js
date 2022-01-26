@@ -22,14 +22,14 @@ function App() {
   }, [state.input])
   
   
-  useEffect(() => {
+  // useEffect(() => {
     
-    const onSubmit = () => {
-      return
-    }
-    //update input
+  //   const onSubmit = () => {
+  //     return
+  //   }
+  //   //update input
 
-  }, [onSubmit])
+  // }, [onSubmit])
 
 
   return (

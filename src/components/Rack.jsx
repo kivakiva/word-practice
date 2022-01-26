@@ -14,7 +14,7 @@ const Rack = (props) => {
   }
   const rack = emptyRack.map(letter => pickRandomLetter(alphabet))
 
-  const letters = rack.map((letter, index) => < RackLetter letter={ letter } key={ index } state={state} setState={setState} />)
+  const letters = rack.map((letter, index) => < RackLetter letter={ letter } key={ index } index={ index } state={state} setState={setState} />)
 
   return (
     <div>

@@ -2,19 +2,21 @@ import react, {useEffect} from "react";
 
 const RackLetter = (props) => {
 
- const { letter, state, setState } = props;
-
- console.log(letter);
-
+ const { letter, state, setState, index } = props;
+ 
  useEffect(() => {
+  
 
    setState((prev) => {
-     return {...prev, rack: [...prev.rack, letter]}
+    prev.rack[index] = letter;
+
+     return {...prev}
    })
  }, [])
 
+
  return (
-   <span>{ letter }, </span>
+   <span>{ state.rack[index] }, </span>
  )
 
 };
