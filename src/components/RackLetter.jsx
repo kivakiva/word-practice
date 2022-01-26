@@ -16,7 +16,7 @@ const RackLetter = (props) => {
 
 
  return (
-   <span>{ state.rack[index] }, </span>
+   <span>{ state.rack[index] && state.rack[index].toUpperCase() }, </span>
  )
 
 };

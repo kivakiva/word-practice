@@ -5,38 +5,28 @@ import './App.css';
 import Rack from "./components/Rack";
 import Input from './components/Input';
 import FoundList from './components/FoundList';
+import sowpods from './dict/sowpods'
+
 
 function App() {
 
   const [state, setState] = useState({
     rack: [],
     input: "",
-    foundList: []
+    foundList: [],
+    dict: []
   })
 
-  
-  useEffect(() => {
-    
-    //update input
-    
-  }, [state.input])
-  
-  
-  // useEffect(() => {
-    
-  //   const onSubmit = () => {
-  //     return
-  //   }
-  //   //update input
 
-  // }, [onSubmit])
+  const shortDict = sowpods.sowpods.split(" ").filter(word => word.length < 8)
 
 
   return (
     <div className="App">
       <header className="App-header">
+        <h1>Tiles:</h1>
       <Rack state={state} setState={setState} />
-      <Input state={state} setState={setState}/>
+      <Input state={state} setState={setState} shortDict={shortDict}/>
       <FoundList state={state} setState={setState}/>
       </header>
     </div>

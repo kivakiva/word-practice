@@ -2,11 +2,13 @@ const FoundList = (props) => {
 
   const { state, setState } = props;
 
-  const foundLetters = state.foundList.map((word, index) => (<div key={index}>{word}, </div>))
+  const foundLetters = state.foundList.map((word, index) => (<span key={index}>{word}, </span>))
 
   return (
     <div>
-      FoundList
+      <h1>
+        FoundList:
+        </h1>
       <div>{foundLetters}</div>
     </div>
   )
