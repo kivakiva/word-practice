@@ -1,21 +1,10 @@
-import react, {useEffect} from "react";
 import {alphabet} from '../helpers/helper'
 
 const RackLetter = (props) => {
 
- const { state, setState, index } = props;
+ const { state, index } = props;
 
  const dash = " "
- 
-//  useEffect(() => {
-  
-
-//    setState((prev) => {
-//     prev.rack[index] = letter;
-
-//      return {...prev}
-//    })
-//  }, [])
 
   const letter = state.rack[index]
 

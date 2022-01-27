@@ -1,9 +1,8 @@
-import react, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 import Rack from "./components/Rack";
 import Input from './components/Input';
-import FoundList from './components/FoundList';
 import Dict from './components/Dict';
 import alphabeticalLetterDict from './dict/shortDict'
 import { allWords } from './helpers/helper';

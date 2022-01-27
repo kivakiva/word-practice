@@ -18,3 +18,15 @@
 - end session to show all playable moves
 - normalize distribution of tiles 
 -- turn alphabet into object with points and frequency
+
+### extra stretch
+- remove comma from end of list
+- use api for definition on hover
+
+### issues
+- jumpy on safari input sometimes (height changes)
+- on referesh once hid all words and showed good baby
+- on mobile does not accept input
+- does not always load deifnition
+- once definition loads as could not get, will not try again
+- not colored red in safari

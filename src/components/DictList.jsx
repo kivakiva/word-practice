@@ -43,7 +43,6 @@ const DictList = (props) => {
     })
   }
 
-  const space = " "
 
   let words = state.dict.filter(word => word.length === wordLength);
   words = words.map((word, index, array) => (<span className="popup" key={word} onClick={()=> getDefinition(word)}>

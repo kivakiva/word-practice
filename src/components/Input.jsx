@@ -5,6 +5,8 @@ const Input = (props) => {
 
 const {state, setState} = props;
 
+const { foundList } = state;
+
 const update = (text) => {
   setState((prev) => ({...prev, input : text.target.value }))
 }
@@ -13,7 +15,7 @@ const update = (text) => {
 
 
 useEffect(() => {
-
+  
   
   const handleKeydown = (event) => {
     const key = event.key.toLowerCase();
@@ -33,7 +35,7 @@ useEffect(() => {
       if (match) {
 
         if (state.dict.includes(state.input)) {
-          if (!state.foundList.includes(state.input)) {
+          if (!foundList.includes(state.input)) {
 
         setState((prev) => ({
           ...prev, 
@@ -82,7 +84,7 @@ useEffect(() => {
   document.addEventListener("keydown", handleKeydown)
 
   return () => document.removeEventListener("keydown", handleKeydown)
-}, [state.input, state.dict])
+}, [state.input, state.dict, setState, state.rack])
 
     return (
       <div>
