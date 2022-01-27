@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import { wordScore, alphabet, totalScore } from '../helpers/helper'
 
 const Input = (props) => {
 
-const {state, setState, shortDict} = props;
+const {state, setState} = props;
 
 const update = (text) => {
   setState((prev) => ({...prev, input : text.target.value }))
@@ -17,7 +18,6 @@ useEffect(() => {
   const handleKeydown = (event) => {
     const key = event.key.toLowerCase();
     if (key === "enter" || key === " ") {
-      console.log("key is enter or space");
 
       const attemptArray = [...state.input];
 
@@ -31,24 +31,50 @@ useEffect(() => {
         return rack
       }, rack)
       if (match) {
-        console.log("match");
 
-        if (shortDict.includes(state.input)) {
+        if (state.dict.includes(state.input)) {
           if (!state.foundList.includes(state.input)) {
 
-          console.log("legal word");
         setState((prev) => ({
-          ...prev, foundList: [...prev.foundList, prev.input], input : ""
+          ...prev, 
+          foundList: [...prev.foundList, prev.input], 
+          input : "", 
+          lastWord: `${state.input}: ${wordScore(state.input, alphabet)}`
+        }))
+        setState((prev) => ({
+          ...prev, 
+          totalScore: totalScore(prev.foundList, wordScore, alphabet)
         }))
           } else {
-            console.log("already played");
+            setState((prev) => ({
+              ...prev, message: "already played"
+            }))
+            setTimeout(() => {
+              setState((prev) => ({
+                ...prev, message: ""
+              }))
+            }, 1000);
           }
         }
         else {
-          console.log("not legal word");
+          setState((prev) => ({
+            ...prev, message: "not in dictionary"
+          }))
+          setTimeout(() => {
+            setState((prev) => ({
+              ...prev, message: ""
+            }))
+          }, 1000);
         }
       } else {
-        console.log("not playable with rack");
+        setState((prev) => ({
+          ...prev, message: "letters unavailable"
+        }))
+        setTimeout(() => {
+          setState((prev) => ({
+            ...prev, message: ""
+          }))
+        }, 1000);
 
       }
     }
@@ -56,13 +82,15 @@ useEffect(() => {
   document.addEventListener("keydown", handleKeydown)
 
   return () => document.removeEventListener("keydown", handleKeydown)
-}, [state.input, shortDict])
+}, [state.input, state.dict])
 
     return (
+      <div>
         <input 
         onChange={ (text) => update(text) }
         value={ state.input }
         ></input>
+      </div>
     )
   }
 export default Input;

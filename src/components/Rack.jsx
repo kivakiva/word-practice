@@ -1,20 +1,32 @@
-import RackLetter from "./RackLetter"
+import RackLetter from "./RackLetter";
+import {useEffect} from "react";
+import { alphabet } from '../helpers/helper'
 
 const Rack = (props) => {
 
-  const { state, setState } = props;
-
-  const alphabet = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+  const { state, setState  } = props;
 
   const emptyRack = ["","","","","","",""];
+
+  const alphabetProbabilityArray = [];
+  for (const [letter, info] of Object.entries(alphabet)) {
+    for (let i = 0; i < info.count; i++) {
+      alphabetProbabilityArray.push(letter)
+    }
+  }
 
   const pickRandomLetter = (alphabet) => {
     const pseudoRandom = Math.floor(Math.random() * alphabet.length);
     return alphabet[pseudoRandom];
   }
-  const rack = emptyRack.map(letter => pickRandomLetter(alphabet))
+  const rack = emptyRack.map(letter => pickRandomLetter(alphabetProbabilityArray))
 
-  const letters = rack.map((letter, index) => < RackLetter letter={ letter } key={ index } index={ index } state={state} setState={setState} />)
+  useEffect(()=> {
+  setState(prev => ({...prev, rack: rack}))
+  },[])
+
+
+  const letters = state.rack.map((letter, index) => < RackLetter letter={ letter } key={ index } index={ index } state={state} setState={setState} />)
 
   return (
     <div>

@@ -1,22 +1,26 @@
 import react, {useEffect} from "react";
+import {alphabet} from '../helpers/helper'
 
 const RackLetter = (props) => {
 
- const { letter, state, setState, index } = props;
+ const { state, setState, index } = props;
+
+ const dash = " "
  
- useEffect(() => {
+//  useEffect(() => {
   
 
-   setState((prev) => {
-    prev.rack[index] = letter;
+//    setState((prev) => {
+//     prev.rack[index] = letter;
 
-     return {...prev}
-   })
- }, [])
+//      return {...prev}
+//    })
+//  }, [])
 
+  const letter = state.rack[index]
 
  return (
-   <span>{ state.rack[index] && state.rack[index].toUpperCase() }, </span>
+   <span>{ letter && letter.toUpperCase() }<sub>{alphabet[letter].value}</sub>{index !== 6 && dash}</span>
  )
 
 };
