@@ -1,5 +1,6 @@
 {
   "name": "word-practice",
+  "homepage": "https://kivakiva.github.io/word-practice",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -15,7 +15,7 @@ const DictList = (props) => {
     popup.classList.toggle("show");
 
     //don't fetch data twice
-    if (state.definition[word]) {
+    if (state.definition[word] && state.definition[word] !== "could not load definition") {
       return;
     }
 

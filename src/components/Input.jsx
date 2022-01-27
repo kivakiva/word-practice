@@ -62,6 +62,7 @@ useEffect(() => {
           }
         }
         else {
+          send();
           setState((prev) => ({
             ...prev, message: "not in dictionary", input: ""
           }))
@@ -72,6 +73,7 @@ useEffect(() => {
           }, 1000);
         }
       } else {
+        send();
         setState((prev) => ({
           ...prev, message: "letters unavailable", input: ""
         }))
