@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/word-practice/static/css/main.2fd2b92d.css",
-    "main.js": "/word-practice/static/js/main.991722e8.js",
+    "main.js": "/word-practice/static/js/main.d941d2c9.js",
     "static/js/787.29212ee5.chunk.js": "/word-practice/static/js/787.29212ee5.chunk.js",
     "index.html": "/word-practice/index.html",
     "main.2fd2b92d.css.map": "/word-practice/static/css/main.2fd2b92d.css.map",
-    "main.991722e8.js.map": "/word-practice/static/js/main.991722e8.js.map",
+    "main.d941d2c9.js.map": "/word-practice/static/js/main.d941d2c9.js.map",
     "787.29212ee5.chunk.js.map": "/word-practice/static/js/787.29212ee5.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2fd2b92d.css",
-    "static/js/main.991722e8.js"
+    "static/js/main.d941d2c9.js"
   ]
 }
