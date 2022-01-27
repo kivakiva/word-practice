@@ -48,7 +48,7 @@ const DictList = (props) => {
   words = words.map((word, index, array) => (<span className="popup" key={word} onClick={()=> getDefinition(word)}>
     {(!state.foundList.includes(word) && !state.show) && <span>🐔</span>}
     {state.foundList.includes(word) && <span>{ word }</span>}
-    {(!state.foundList.includes(word) && state.show) && <span color="red">{ word }</span>}
+    {(!state.foundList.includes(word) && state.show) && <span className="red">{ word }</span>}
     <span id={word} className="popuptext">{state.definition[word]}</span>{index !== array.length - 1 && <>,&ensp;</>}</span>))
 
   return (

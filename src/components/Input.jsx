@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { wordScore, alphabet, totalScore } from '../helpers/helper'
+import { wordScore, alphabet, totalScore, send } from '../helpers/helper'
 
 const Input = (props) => {
 
@@ -10,6 +10,8 @@ const { foundList } = state;
 const update = (text) => {
   setState((prev) => ({...prev, input : text.target.value }))
 }
+
+
 
 
 
@@ -48,8 +50,9 @@ useEffect(() => {
           totalScore: totalScore(prev.foundList, wordScore, alphabet)
         }))
           } else {
+            send();
             setState((prev) => ({
-              ...prev, message: "already played"
+              ...prev, message: "already played", input: ""
             }))
             setTimeout(() => {
               setState((prev) => ({
@@ -60,7 +63,7 @@ useEffect(() => {
         }
         else {
           setState((prev) => ({
-            ...prev, message: "not in dictionary"
+            ...prev, message: "not in dictionary", input: ""
           }))
           setTimeout(() => {
             setState((prev) => ({
@@ -70,7 +73,7 @@ useEffect(() => {
         }
       } else {
         setState((prev) => ({
-          ...prev, message: "letters unavailable"
+          ...prev, message: "letters unavailable", input: ""
         }))
         setTimeout(() => {
           setState((prev) => ({
@@ -91,6 +94,7 @@ useEffect(() => {
         <input 
         onChange={ (text) => update(text) }
         value={ state.input }
+        id="guess"
         ></input>
       </div>
     )

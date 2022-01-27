@@ -1,3 +1,5 @@
+import anime from "animejs";
+
 const allWords = (wordArray) => {
   const newArr = [];
   const allSplices = [];
@@ -155,5 +157,35 @@ const reset = (setState, generateRack, generateDict, alphabet, alphabetDict, all
   })
 }
 
-export { allWords, alphabet, wordScore, totalScore, generateRack, reset, generateDict };
+const send = () => {
+  
+  const xMax = 8;
+  const shake = anime({
+    targets: '#guess',
+    easing: 'easeInOutSine',
+    duration: 220,
+    translateX: [
+      {
+        value: xMax * -1,
+      },
+      {
+        value: xMax,
+      },
+      {
+        value: xMax/-2,
+      },
+      {
+        value: xMax/2,
+      },
+      {
+        value: 0,
+      }
+    ],
+    autoplay: false,
+  });
+  
+  shake.restart();
+};
+
+export { allWords, alphabet, wordScore, totalScore, generateRack, reset, generateDict, send };
 
