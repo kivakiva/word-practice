@@ -1,6 +1,6 @@
 import RackLetter from "./RackLetter";
 import {useEffect} from "react";
-import { alphabet } from '../helpers/helper'
+import { alphabet, generateRack } from '../helpers/helper'
 
 const Rack = (props) => {
 
@@ -9,20 +9,10 @@ const Rack = (props) => {
   
   
   useEffect(()=> {
-    const emptyRack = ["","","","","","",""];
-    const alphabetProbabilityArray = [];
-    for (const [letter, info] of Object.entries(alphabet)) {
-      for (let i = 0; i < info.count; i++) {
-        alphabetProbabilityArray.push(letter)
-      }
-    }
-  
-    const pickRandomLetter = (alphabet) => {
-      const pseudoRandom = Math.floor(Math.random() * alphabet.length);
-      return alphabet[pseudoRandom];
-    }
-    const rack = emptyRack.map(letter => pickRandomLetter(alphabetProbabilityArray))
-  setState(prev => ({...prev, rack: rack}))
+
+    generateRack(alphabet, setState);
+
+
   },[setState])
 
 

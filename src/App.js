@@ -5,16 +5,20 @@ import Rack from "./components/Rack";
 import Input from './components/Input';
 import Dict from './components/Dict';
 import alphabeticalLetterDict from './dict/shortDict'
-import { allWords } from './helpers/helper';
+import { allWords, reset, generateRack, alphabet, generateDict } from './helpers/helper';
 
 
 function App() {
 
+  const rack = generateRack(alphabet)
+  
+  const dict = generateDict(rack, alphabeticalLetterDict, allWords)
+
   const [state, setState] = useState({
-    rack: [],
+    rack: rack,
     input: "",
     foundList: [],
-    dict: [],
+    dict: dict,
     show: false,
     message: "",
     lastWord: "",
@@ -28,35 +32,6 @@ function App() {
   }
 
 
-  
-  useEffect(() => {
-    
-    let allLegalLettersUnscrambled = [];
-
-    const dict = alphabeticalLetterDict;
-    //take rack and all words
-    let rack = state.rack;
-
-    if (rack.length !== 0) {
-      const allTileCombinations = allWords(rack);
-      const allLegalLetters = allTileCombinations.filter((word) => {
-        return dict[word]
-      })
-      
-      allLegalLettersUnscrambled = 
-      allLegalLetters.reduce((array, word) => [...array, ...dict[word]], []);
-
-      //set placeholder definition for each word so they can be clicked
-      // for (const word of allLegalLettersUnscrambled) {
-      //   setState(s => ({...s, definition: {...s.definition, [word]: "loading"}}))
-      // }
-
-      setState(s => ({...s, dict: allLegalLettersUnscrambled}))
-
-    }
-
-  }, [state.rack])
-
 
   return (
     <div className="App">
@@ -66,11 +41,15 @@ function App() {
           </div>
       <Rack state={state} setState={setState} />
       <Input state={state} setState={setState} />
-      <div 
+      <div>
+      <span 
       onClick={ () => { show() } }
-      >{state.show? <span>Hide</span> : <span>Show</span>}</div>
+      >{state.show? <>Hide</> : <>Show</>}</span>
+      <>&nbsp;&nbsp;</>
+      <span onClick={()=>reset(setState, generateRack, generateDict, alphabet, alphabeticalLetterDict, allWords)}>Reset</span>
+      </div>
       {/* <div>{state.lastWord} -- <b>Total:</b> {state.totalScore}</div> */}
-      {state.foundList.length === state.dict.length && <div>🐣🐣🐣 Good baby 🐣🐣🐣</div>}
+      {(state.foundList.length === state.dict.length && state.foundList.length !== 0) && <div>🐣🐣🐣 Good baby 🐣🐣🐣</div>}
       <Dict state={state} setState={setState}/>
       {/* {state.show && <div>{state.foundList}/{state.dict} found</div>} */}
       </header>

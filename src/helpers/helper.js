@@ -102,5 +102,58 @@ const totalScore = (wordList, wordScore, alphabet) => {
   return score;
 }
 
-export { allWords, alphabet, wordScore, totalScore };
+const generateRack = (alphabet) => {
+
+  const emptyRack = ["","","","","","",""];
+  const alphabetProbabilityArray = [];
+  for (const [letter, info] of Object.entries(alphabet)) {
+    for (let i = 0; i < info.count; i++) {
+      alphabetProbabilityArray.push(letter)
+    }
+  }
+
+  const pickRandomLetter = (alphabet) => {
+    const pseudoRandom = Math.floor(Math.random() * alphabet.length);
+    return alphabet[pseudoRandom];
+  }
+  const rack = emptyRack.map(letter => pickRandomLetter(alphabetProbabilityArray))
+
+  return rack;
+  // setState(prev => ({...prev, rack: rack}))
+}
+
+const generateDict = (rack, alphabetDict, allWords) => {
+
+  const allTileCombinations = allWords(rack);
+  const allLegalLetters = allTileCombinations.filter((word) => {
+    return alphabetDict[word]
+  })
+  
+  const dict = 
+  allLegalLetters.reduce((array, word) => [...array, ...alphabetDict[word]], []);
+
+  return dict
+
+}
+
+const reset = (setState, generateRack, generateDict, alphabet, alphabetDict, allWords) => {
+
+  const rack = generateRack(alphabet)
+  
+  const dict = generateDict(rack, alphabetDict, allWords)
+
+  setState({
+    rack: rack,
+    input: "",
+    foundList: [],
+    dict: dict,
+    show: false,
+    message: "",
+    lastWord: "",
+    totalScore: 0,
+    definition: {}
+  })
+}
+
+export { allWords, alphabet, wordScore, totalScore, generateRack, reset, generateDict };
 
