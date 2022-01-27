@@ -48,9 +48,9 @@ function App() {
       allLegalLetters.reduce((array, word) => [...array, ...dict[word]], []);
 
       //set placeholder definition for each word so they can be clicked
-      for (const word of allLegalLettersUnscrambled) {
-        setState(s => ({...s, definition: {...s.definition, [word]: "loading"}}))
-      }
+      // for (const word of allLegalLettersUnscrambled) {
+      //   setState(s => ({...s, definition: {...s.definition, [word]: "loading"}}))
+      // }
 
       setState(s => ({...s, dict: allLegalLettersUnscrambled}))
 

@@ -6,8 +6,19 @@ const DictList = (props) => {
 
   const getDefinition = (word) => {
 
+    //don't popup if hidden
+    if (!state.foundList.includes(word) && !state.show) {
+      return;
+    }
+
     const popup = document.getElementById(word)
-    popup.hidden = false;
+    popup.classList.toggle("show");
+
+    //don't fetch data twice
+    if (state.definition[word]) {
+      return;
+    }
+
 
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
     console.log('url: ', url);
@@ -32,17 +43,18 @@ const DictList = (props) => {
     })
   }
 
+  const space = " "
+
   let words = state.dict.filter(word => word.length === wordLength);
-  words = words.map(word => (<span key={word} onClick={()=> getDefinition(word)}>
+  words = words.map((word, index, array) => (<span className="popup" key={word} onClick={()=> getDefinition(word)}>
     {(!state.foundList.includes(word) && !state.show) && <span>🐔</span>}
     {state.foundList.includes(word) && <span>{ word }</span>}
     {(!state.foundList.includes(word) && state.show) && <span color="red">{ word }</span>}
-    <span id={word} className="popup" hidden={true}>{state.definition[word]}</span>
-  , </span>))
+    <span id={word} className="popuptext">{state.definition[word]}</span>{index !== array.length - 1 && <>,&ensp;</>}</span>))
 
   return (
     <div className="list-item">
-    { words.length > 0 && <div><h3>{wordLength}-letter words</h3>< div>{words}</div></div> }
+    { words.length > 0 && <div><h3>{wordLength}-letter word{words.length > 1 && <>s</>}</h3>< div>{words}</div></div> }
     </div>
   )
 }
