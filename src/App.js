@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import './App.css';
 
 import Rack from "./components/Rack";
@@ -32,10 +32,18 @@ function App() {
     setState(prev => ({...prev, show: (prev.show ? false : true)}))
   }
 
+  const keepFocus = () => {
+    console.log("clicked!");
+    document.getElementById("guess").focus()
+  
+  };
+
 
 
   return (
-    <div className="App">
+    <div className="App"
+    onClick={()=>keepFocus()}
+    >
       <header className="App-header">
         <div className="error">
           { state.message }

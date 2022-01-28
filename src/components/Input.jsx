@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { wordScore, alphabet, totalScore, send } from '../helpers/helper'
 
 const Input = (props) => {
@@ -10,11 +10,6 @@ const { foundList } = state;
 const update = (text) => {
   setState((prev) => ({...prev, input : text.target.value }))
 }
-
-
-
-
-
 
 useEffect(() => {
   
