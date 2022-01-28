@@ -23,14 +23,16 @@ useEffect(() => {
     const key = event.key.toLowerCase();
     if (key === "enter" || key === " ") {
 
-      const attemptArray = [ ...JSON.parse(JSON.stringify(state.input))];
+      const lowercaseAttempt = state.input.toLowerCase();
+
+      const attemptArray = [ ...lowercaseAttempt];
 
       const destructibleRack = JSON.parse(JSON.stringify(state.rack));
 
       const match = attemptArray.reduce((rack, attemptLetter) => {
         if (!rack) {return false}
         const index = rack.indexOf(attemptLetter);
-        if (!rack.includes(attemptLetter.toLowerCase())) {
+        if (!rack.includes(attemptLetter)) {
           return false;
         } else {
           rack[index] = 0;
@@ -39,14 +41,14 @@ useEffect(() => {
       }, destructibleRack)
       if (match) {
 
-        if (state.dict.includes(state.input)) {
-          if (!foundList.includes(state.input)) {
+        if (state.dict.includes(state.input.toLowerCase())) {
+          if (!foundList.includes(state.input.toLowerCase())) {
 
         setState((prev) => ({
           ...prev, 
-          foundList: [...prev.foundList, prev.input], 
+          foundList: [...prev.foundList, prev.input.toLowerCase()], 
           input : "", 
-          lastWord: `${state.input}: ${wordScore(state.input, alphabet)}`
+          lastWord: `${state.input.toLowerCase()}: ${wordScore(state.input, alphabet)}`
         }))
         setState((prev) => ({
           ...prev, 

@@ -91,7 +91,7 @@ const alphabet = {
 const wordScore = (word, alphabet) => {
   let score = 0;
   for (const letter of word) {
-    score += alphabet[letter].value
+    score += alphabet[letter.toLowerCase()].value
   }
   return score;
 }
