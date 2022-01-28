@@ -23,7 +23,8 @@ function App() {
     message: "",
     lastWord: "",
     totalScore: 0,
-    definition: {}
+    definition: {},
+    fetchingDefinitionOfWord: ""
   })
 
 

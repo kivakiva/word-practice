@@ -11,35 +11,34 @@ const DictList = (props) => {
       return;
     }
 
+    //dont allow pop-up removal if awaitinging api
+    if (state.fetchingDefinitionOfWord === word) {
+      return;
+    }
+
     const popup = document.getElementById(word)
     popup.classList.toggle("show");
-
+    
     //don't fetch data twice
     if (state.definition[word] && state.definition[word] !== "could not load definition") {
       return;
     }
-
+    
+    setState(s => ({...s, fetchingDefinitionOfWord : word}))
 
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
-    console.log('url: ', url);
     axios.get(url)
     .then(res => {
-      let definitions = [];
       const meanings = res.data[0].meanings
       const firstDefinition = meanings[0].definitions[0].definition
-      setState(s => ({...s, definition: {...s.definition, [word]: firstDefinition}}))
-      
-      //not currently using this
-      for (const definitionData of res.data[0].meanings) {
-        const definition = definitionData.definitions[0].definition
-        definitions = [...definitions, definition]
-      }
+      setState(s => ({...s, fetchingDefinitionOfWord : "" , definition: {...s.definition, [word]: firstDefinition}}))
       
     }
     )
-    .catch(err=> {console.log(err.message);
+    .catch(err=> {
+      console.log(err.message);
       const definitionError = "could not load definition";
-      setState(s => ({...s, definition: {...s.definition, [word]: definitionError}}));
+      setState(s => ({...s, fetchingDefinitionOfWord : "" , definition: {...s.definition, [word]: definitionError}}));
     })
   }
 

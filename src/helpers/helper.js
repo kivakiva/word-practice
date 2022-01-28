@@ -153,7 +153,8 @@ const reset = (setState, generateRack, generateDict, alphabet, alphabetDict, all
     message: "",
     lastWord: "",
     totalScore: 0,
-    definition: {}
+    definition: {},
+    fetchingDefinitionOfWord: ""
   })
 }
 
