@@ -23,17 +23,20 @@ useEffect(() => {
     const key = event.key.toLowerCase();
     if (key === "enter" || key === " ") {
 
-      const attemptArray = [...state.input];
+      const attemptArray = [ ...JSON.parse(JSON.stringify(state.input))];
 
-      const rack = [...state.rack];
+      const destructibleRack = JSON.parse(JSON.stringify(state.rack));
 
       const match = attemptArray.reduce((rack, attemptLetter) => {
         if (!rack) {return false}
         const index = rack.indexOf(attemptLetter);
-        if (index === -1) {return false}
-        rack[index] = 0;
-        return rack
-      }, rack)
+        if (!rack.includes(attemptLetter.toLowerCase())) {
+          return false;
+        } else {
+          rack[index] = 0;
+          return rack;
+        }
+      }, destructibleRack)
       if (match) {
 
         if (state.dict.includes(state.input)) {
@@ -74,6 +77,7 @@ useEffect(() => {
         }
       } else {
         send();
+
         setState((prev) => ({
           ...prev, message: "letters unavailable", input: ""
         }))
@@ -89,7 +93,7 @@ useEffect(() => {
   document.addEventListener("keydown", handleKeydown)
 
   return () => document.removeEventListener("keydown", handleKeydown)
-}, [state.input, state.dict, setState, state.rack])
+}, [state.input, state.dict, setState, state.rack, foundList])
 
     return (
       <div>
