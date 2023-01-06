@@ -1,5 +1,7 @@
 # Word Practice
 
+This app is live and you can play it here: [Word Practice on Github](https://kivakiva.github.io/word-practice/). 
+
 I created this mini application to practice using states in React.
 
 It is designed to provide practice finding words for various word unscrambling games likes Scrabble. The app generates a random hand based on common letter distribution in these games. From that hand it then generates a list of all possible playable words. The user can see how many words are possible and what their length is, but not what they are. They can then input guesses which, if correct, will reveal the word from the hidden list.
