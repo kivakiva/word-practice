@@ -1,32 +1,9 @@
-# core
+# Word Practice
 
-## GUI
-### rack component
-- state controlled seven letters
-- button for new rack
-### input component
-- state controlled input
-- submit with enter space or tab
-### correct guesses
-- state controlled array of correct guesses
-- guess must be in dictionary and be playable with given tiles
+I created this mini application to practice using states in React.
 
-### stretch
-- preload all playable moves
--- as object
-- separate useEffect hooks for keydown and submit
-- end session to show all playable moves
-- normalize distribution of tiles 
--- turn alphabet into object with points and frequency
+It is designed to provide practice finding words for various word unscrambling games likes Scrabble. The app generates a random hand based on common letter distribution in these games. From that hand it then generates a list of all possible playable words. The user can see how many words are possible and what their length is, but not what they are. They can then input guesses which, if correct, will reveal the word from the hidden list.
+The application also fetches dictionary definitions from an API that the user can access by clicking on revealed words.
+At any time, the user can give up and reveal the remaining words playable with their current rack or reset their tiles and receive a new rack.
 
-### extra stretch
-- remove comma from end of list
-- use api for definition on hover
-
-### issues
-- jumpy on safari input sometimes (height changes)
-- on referesh once hid all words and showed good baby
-- on mobile does not accept input
-- does not always load deifnition
-- once definition loads as could not get, will not try again
-- not colored red in safari
+I am happy with how this app turned out! I think it's a genuinely usefulaand enjoyable practice tool to improve one's word searching ability. Finding an optimized algorithm for finding all of the playable words for a given rack was the most interesting part to script. 
