@@ -8,4 +8,4 @@ It is designed to provide practice finding words for various word unscrambling g
 The application also fetches dictionary definitions from an API that the user can access by clicking on revealed words.
 At any time, the user can give up and reveal the remaining words playable with their current rack or reset their tiles and receive a new rack.
 
-I am happy with how this app turned out! I think it's a genuinely usefulaand enjoyable practice tool to improve one's word searching ability. Finding an optimized algorithm for finding all of the playable words for a given rack was the most interesting part to script. 
+I am happy with how this app turned out! I think it's a genuinely useful and enjoyable practice tool to improve one's word searching ability. Researching and writing an optimized algorithm for finding all of the playable words for a given rack was the most interesting part to script. 
